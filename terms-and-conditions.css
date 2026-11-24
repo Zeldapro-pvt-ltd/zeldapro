@@ -1,0 +1,36 @@
+/* Terms and Conditions page — tc- scoped styles only */
+
+.tc-prose {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #4a5d64;
+}
+
+.tc-prose > * + * {
+  margin-top: 1.25em;
+}
+
+.tc-prose h2 {
+  margin: 0.5em 0 0;
+  font-size: clamp(20px, 2.4vw, 24px);
+  line-height: 1.35;
+  color: #12232c;
+  font-weight: 700;
+}
+
+.tc-prose a {
+  color: #087e76;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.tc-prose a:hover {
+  color: #0b5a55;
+}
+
+.footer a.tc-footer-active {
+  color: #087e76;
+  font-weight: 800;
+}
