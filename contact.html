@@ -71,23 +71,27 @@
                 </aside>
                 <div class="content-block contact-form-panel">
                     <h3>Send an enquiry</h3>
-                    <form data-demo-form>
+                    <form action="https://api.web3forms.com/submit" method="POST" autocomplete="off">
+                        <input type="hidden" name="access_key" value="86db3645-5017-4fd0-8455-0d0b9d295a13">
+                        <input type="hidden" name="subject" value="New Contact Enquiry from Zeldapro Website">
+                        <input type="hidden" name="from_name" value="Zeldapro Website">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                         <div class="form-grid">
-                            <div class="field"><label for="name">Full name</label><input id="name" name="name" required
+                            <div class="field"><label for="name">Full name</label><input id="name" name="name" type="text" required
                                     placeholder="Your name"></div>
-                            <div class="field"><label for="company">Company</label><input id="company" name="company"
+                            <div class="field"><label for="company">Company</label><input id="company" name="company" type="text"
                                     placeholder="Organisation"></div>
                             <div class="field"><label for="email">Business email</label><input id="email" name="email"
                                     type="email" required placeholder="you@company.com"></div>
                             <div class="field"><label for="interest">Area of interest</label><select id="interest"
                                     name="interest">
-                                    <option>AI consulting</option>
-                                    <option>AI engineering / solutions</option>
-                                    <option>Software development</option>
-                                    <option>Technology services</option>
-                                    <option>Product partnership</option>
-                                    <option>Careers</option>
-                                    <option>Other</option>
+                                    <option value="AI consulting">AI consulting</option>
+                                    <option value="AI engineering / solutions">AI engineering / solutions</option>
+                                    <option value="Software development">Software development</option>
+                                    <option value="Technology services">Technology services</option>
+                                    <option value="Product partnership">Product partnership</option>
+                                    <option value="Careers">Careers</option>
+                                    <option value="Other">Other</option>
                                 </select></div>
                             <div class="field full"><label for="message">How can we help?</label><textarea id="message"
                                     name="message" required
@@ -144,6 +148,37 @@
         </div>
     </footer>
     <script src="assets/site.js"></script>
+    <script>
+        // Clear form fields when user navigates back to contact page
+        window.addEventListener('pageshow', function () {
+            var form = document.querySelector('form[action*="web3forms"]');
+            if (form) {
+                form.reset();
+                var fields = form.querySelectorAll('input:not([type="hidden"]):not([type="checkbox"]), textarea');
+                fields.forEach(function (field) {
+                    field.value = '';
+                });
+                var select = form.querySelector('select');
+                if (select) select.selectedIndex = 0;
+            }
+        });
+
+        // Reset inputs on submit so history cache snapshot has clean fields
+        var form = document.querySelector('form[action*="web3forms"]');
+        if (form) {
+            form.addEventListener('submit', function () {
+                setTimeout(function () {
+                    form.reset();
+                    var fields = form.querySelectorAll('input:not([type="hidden"]):not([type="checkbox"]), textarea');
+                    fields.forEach(function (field) {
+                        field.value = '';
+                    });
+                    var select = form.querySelector('select');
+                    if (select) select.selectedIndex = 0;
+                }, 100);
+            });
+        }
+    </script>
 </body>
 
 </html>
